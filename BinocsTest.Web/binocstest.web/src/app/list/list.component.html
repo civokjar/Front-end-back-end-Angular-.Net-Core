@@ -1,0 +1,27 @@
+ <div class="container" *ngIf="listId" >
+        <h1>List with id : {{listId}} has next items : </h1>
+        <div class="col-md-12" ><button class="btn btn-primary" (click)="goBack()">&#8592;Back</button></div>
+        <div class="container" *ngIf="(listItems$ | async)?.length!=0">
+            <div class="row"  >
+                <div class="col-md-4" ><span>List Id</span></div>
+                <div class="col-md-4" >  <span>Content</span></div>
+                <div class="col-md-4" >  <span>Action</span></div>
+            </div>
+            <div class="row" *ngFor="let listItem of (listItems$ | async)"  >
+                <div class="col-md-4" ><span>{{listItem.id}}</span></div>
+                <div class="col-md-4" >  <span>{{listItem.content}}</span></div>
+                <div class="col-md-4" ><button class="btn btn-danger" (click)="deleteItem(listItem.id)">Delete</button></div>
+            </div>
+        </div>
+        <div class="container" *ngIf="(listItems$ | async)?.length==0">
+            <div class="row"  >
+                <h2>** No items **</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row"  >
+                <input [(ngModel)]="newListItemContent$"  matInput value=""/>
+                <button class="btn btn-primary"  (click)="addNewItem(listId)">Create new list item</button>
+            </div>
+        </div>
+    </div>

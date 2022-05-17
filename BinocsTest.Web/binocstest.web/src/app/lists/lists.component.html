@@ -1,0 +1,14 @@
+<div class="container"  (listCreated)="loadLists()" >
+    <h1>All lists</h1>
+    <div class="row" *ngFor="let list of (lists$ | async)"  >
+        <div class="col-md-6" ><span>{{list.name}}</span></div>
+        <div class="col-md-6" > <button class="btn-primary" (click)="goToList(list.id, '')">See list content</button></div>
+     
+    </div>
+    <div class="container">
+        <div class="row"  >
+        <input [(ngModel)]="newListName"  matInput value=""/>
+        <button class="btn btn-primary" (click)="createNewList()">Create new list</button>
+        </div>
+    </div>
+</div>
